@@ -1,0 +1,159 @@
+{% extends 'admin/index.html' %}
+
+{% block content %} 
+
+<style>.my-button:hover {
+  background-color: green; /* Change the background color to white on hover */
+  color: #ffff; /* Change the text color to the Bootstrap primary color on hover */
+}</style>
+<div class="container" style="background-color: #ffff; padding:20px;">
+    <div class="row">
+     
+        <div class="col-md-6">
+          <a class="my-link" href="{% url 'orderchartsdaily' %}" style="text-decoration: none;">
+            <!-- Yearly Breakup -->
+            <div class="card overflow-hidden">
+              <div class="card-body p-4">
+                <h5 class="card-title mb-9 fw-semibold">Yearly Breakup</h5>
+                <div class="row align-items-center">
+                  <div class="col-8">
+                    <h4 class="fw-semibold mb-3">₹{{total_year_amount}}</h4>
+                    <div class="d-flex align-items-center mb-3">
+                      <span
+                        class="me-1 rounded-circle bg-light-success round-30 d-flex align-items-center justify-content-center">
+                        <i class="ti ti-arrow-up-left text-success"></i>
+                      </span>
+                      <p class="text-dark me-1 fs-3 mb-0">+{{total_year_orders}}</p>
+                      <p class="fs-3 mb-0">orders last year</p>
+                    </div>
+                    <div class="d-flex align-items-center">
+                      <div class="me-4">
+                        <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
+                        <span class="fs-2">2023</span>
+                      </div>
+                      <div>
+                        <span class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
+                        <span class="fs-2">2023</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="d-flex justify-content-center">
+                      <div id="breakup"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> </a>
+          </div>
+       
+       
+      <div class="col-md-6">
+        <a class="my-link" href="{% url 'orderchartsmonthly' %}" style="text-decoration: none;">
+        <!-- Yearly Breakup -->
+        <div class="card overflow-hidden">
+          <div class="card-body p-4">
+            <h5 class="card-title mb-9 fw-semibold">Monthly Breakup</h5>
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h4 class="fw-semibold mb-3">₹{{total_month_amount}}</h4>
+                <div class="d-flex align-items-center mb-3">
+                  <span
+                    class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
+                    <i class="ti ti-arrow-up-left text-success"></i>
+                  </span>
+                  <p class="text-dark me-1 fs-3 mb-0">+{{total_month_orders}}</p>
+                  <p class="fs-3 mb-0">orders last month</p>
+                </div>
+                <div class="d-flex align-items-center">
+                  <div class="me-4">
+                    <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
+                    <span class="fs-2">August</span>
+                  </div>
+                  <div>
+                    <span class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
+                    <span class="fs-2">july</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="d-flex justify-content-center">
+                  <div id="breakup"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div></a>
+      </div> </div>
+      <div class="row">
+      <div class="col-lg-6">
+        <!-- Monthly Earnings -->
+        <a class="my-link" href="{% url 'orderchartsweekly' %}" style="text-decoration: none;">
+        <div class="card">
+          <div class="card-body">
+            <div class="row alig n-items-start">
+              <div class="col-8">
+                <h5 class="card-title mb-9 fw-semibold"> Weekly Earnings </h5>
+                <h4 class="fw-semibold mb-3">₹{{total_week_amount}}</h4>
+                <div class="d-flex align-items-center pb-1">
+                  <span
+                    class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
+                    <i class="ti ti-arrow-up-left text-success"></i>
+                  </span>
+                  <p class="text-dark me-1 fs-3 mb-0">+{{total_week_orders}}</p>
+                  <p class="fs-3 mb-0">orders last week</p>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="d-flex justify-content-end">
+                  <div
+                    class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
+                    <i class="ti ti-currency-dollar fs-6"></i>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+          <div id="earning"></div>
+        </div>
+      </div>
+    </a>
+  </div>
+  
+  <div class="col-lg-6">
+    <!-- daily Earnings -->
+    <a class="my-link" href="{% url 'orderchartsdaily' %}" style="text-decoration: none;">
+    <div class="card">
+      <div class="card-body">
+        <div class="row alig n-items-start">
+          <div class="col-8">
+            <h5 class="card-title mb-9 fw-semibold"> Daily Earnings </h5>
+            <h4 class="fw-semibold mb-3">₹{{total_today_amount}}</h4>
+            <div class="d-flex align-items-center pb-1">
+              <span
+                class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
+                <i class="ti ti-arrow-up-left text-success"></i>
+              </span>
+              <p class="text-dark me-1 fs-3 mb-0">+{{total_today_orders}}</p>
+              <p class="fs-3 mb-0">orders today</p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="d-flex justify-content-end">
+              <div
+                class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
+                <i class="ti ti-currency-dollar fs-6"></i>
+              </div>
+            </div>
+          </div>
+        
+      </div>
+      <div id="earning"></div>
+    </div>
+  </div>
+</a>
+</div></div>
+<a href="{% url 'sales_report' %}"> <button type="button" class="btn btn-primary btn-lg btn-block my-button">See full sales report</button></a>
+</div>
+
+{% endblock  %}
