@@ -107,9 +107,9 @@ AUTH_USER_MODEL = 'cust.CustomUser'
 # }
 import dj_database_url
 
-DATABASES = {
-    'default':dj_database_url.parse('postgres://tails_wwgi_user:tDETWY1KZKkeS8pEVTXjR1DHosUdngzE@dpg-cof36tgcmk4c73fvacfg-a.singapore-postgres.render.com/tails_wwgi')
-}
+# DATABASES = {
+#     'default':dj_database_url.parse('postgres://tails_wwgi_user:tDETWY1KZKkeS8pEVTXjR1DHosUdngzE@dpg-cof36tgcmk4c73fvacfg-a.singapore-postgres.render.com/tails_wwgi')
+# }
 
 
 AUTH_PASSWORD_VALIDATORS = [
